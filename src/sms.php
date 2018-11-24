@@ -4,6 +4,7 @@ namespace itsmh\yii2payamresan;
 
 use itsmh\yii2payamresan\exception\configException;
 use itsmh\yii2payamresan\exception\sendException;
+use itsmh\yii2payamresan\exception\statusException;
 use yii\base\Exception;
 
 class sms extends \yii\base\Widget
@@ -36,7 +37,7 @@ class sms extends \yii\base\Widget
     /**
      * @var string soap url of the provider
      */
-    private $_serviceUrl = 'https://www.payam-resan.com/ws/v2/ws.asmx?wsdl';
+    private $_serviceUrl = 'http://sms-webservice.ir/v1/v1.asmx?WSDL';
 
     /**
      * @var \SoapClient generated at the initialization
@@ -83,6 +84,23 @@ class sms extends \yii\base\Widget
                 throw new sendException($res->SendMessageResult->long, $res->SendMessageResult->long);
             } else {
                 return $res->SendMessageResult->long;
+            }
+        }
+        catch (SoapFault $ex) {
+            throw new Exception($ex);
+        }
+    }
+
+    public function status($messageId) {
+        $parameters['Username'] = $this->username;
+        $parameters['PassWord'] = $this->password;
+        $parameters['messagesId'] = is_array($messageId) ? [(int)$messageId[0]] : [(int)$messageId];
+        try {
+            $res = $this->_soapClient->GetMessagesStatus($parameters);
+            if($res->GetMessagesStatusResult->long != 4) {
+                throw new statusException($res->GetMessagesStatusResult->long, $res->GetMessagesStatusResult->long);
+            } else {
+                return true;
             }
         }
         catch (SoapFault $ex) {

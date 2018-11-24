@@ -9,7 +9,6 @@
 namespace itsmh\yii2payamresan\exception;
 
 
-use Throwable;
 use yii\base\Exception;
 
 class sendException extends Exception

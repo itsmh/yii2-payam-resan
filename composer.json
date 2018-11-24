@@ -2,14 +2,19 @@
     "name": "itsmh/yii2-payam-resan",
     "description": "payam-resan sms panel yii2 integration",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension","sms","payamresan"],
+    "keywords": ["yii2", "extension", "sms", "payamresan", "payam-resan"],
     "license": "MIT",
     "authors": [
         {
             "name": "itsmh",
-            "email": "peace.mhy@gmail.com"
+            "email": "peace.mhy@gmail.com",
+            "role": "Creator"
         }
     ],
+    "support": {
+        "issues": "https://github.com/itsmh/yii2-payam-resan/issues",
+        "source": "https://github.com/itsmh/yii2-payam-resan"
+    },
     "require": {
         "yiisoft/yii2": "~2.0.0",
         "ext-soap": ">=1.2"

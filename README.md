@@ -42,6 +42,6 @@ and in you app you can access it via `Yii::$app->sms->send("Some text", "09XXXXX
 TO DO
 -----
 - [x] Send sms
-- [ ] Get status of the message
+- [x] Get status of the message
 - [ ] Send bulk sms
 - [ ] Contacts
